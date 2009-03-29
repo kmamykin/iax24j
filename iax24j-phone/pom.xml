@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>iax24j</groupId>
+  <artifactId>iax24j-phone</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <description>Java IAX2 Client Library</description>
+  <licenses>
+    <license>
+      <name>GNU LESSER GENERAL PUBLIC LICENSE Version 2.1</name>
+      <url>LICENSE.txt</url>
+    </license>
+  </licenses>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptor>src\main\assemblies\package.xml</descriptor>
+<!--          <archive>  -->
+<!--            <manifest>  -->
+<!--              <mainClass>iax.phone.JIaxPhoneApp</mainClass>-->
+<!--              <addClasspath>true</addClasspath>-->
+<!--              <classpathPrefix>lib</classpathPrefix>-->
+<!--            </manifest>  -->
+<!--          </archive>  -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>iax24j</groupId>
+      <artifactId>iax24j</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>iax24j</groupId>
+      <artifactId>iax24j-codec-ulaw</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>iax24j</groupId>
+      <artifactId>iax24j-codec-gsm</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+</project>

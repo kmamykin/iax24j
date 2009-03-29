@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>iax24j</groupId>
+  <artifactId>iax24j-codec-gsm</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <description>Java IAX2 Client Library</description>
+  <licenses>
+    <license>
+      <name>GNU LESSER GENERAL PUBLIC LICENSE Version 2.1</name>
+      <url>LICENSE.txt</url>
+    </license>
+  </licenses>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>iax24j</groupId>
+      <artifactId>iax24j</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>Tritonus</groupId>
+      <artifactId>tritonus_share</artifactId>
+      <version>0.3.6</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/tritonus_share-0.3.6.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>Tritonus</groupId>
+      <artifactId>tritonus_gsm</artifactId>
+      <version>0.3.6</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/tritonus_gsm-0.3.6.jar</systemPath>
+    </dependency>
+  </dependencies>
+</project>
