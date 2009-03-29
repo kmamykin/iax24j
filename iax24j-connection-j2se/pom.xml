@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
+  <name>iax24j-connection-j2se</name>
   <groupId>iax24j</groupId>
   <artifactId>iax24j-connection-j2se</artifactId>
   <version>0.1.0-SNAPSHOT</version>

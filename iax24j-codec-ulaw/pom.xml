@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
+  <name>iax24j-codec-ulaw</name>
   <groupId>iax24j</groupId>
   <artifactId>iax24j-codec-ulaw</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <description>Java IAX2 Client u-law codec Library</description>
   <licenses>
 	<license>
@@ -28,7 +29,7 @@
   	<dependency>
   		<groupId>iax24j</groupId>
   		<artifactId>iax24j</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<version>0.1.0-SNAPSHOT</version>
   		<type>jar</type>
   	</dependency>
   </dependencies>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project>
   <modelVersion>4.0.0</modelVersion>
+  <name>iax24j-codec-gsm</name>
   <groupId>iax24j</groupId>
   <artifactId>iax24j-codec-gsm</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <description>Java IAX2 Client Library</description>
   <licenses>
     <license>
@@ -27,7 +28,7 @@
     <dependency>
       <groupId>iax24j</groupId>
       <artifactId>iax24j</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>Tritonus</groupId>

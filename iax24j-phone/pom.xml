@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project>
   <modelVersion>4.0.0</modelVersion>
+  <name>iax24j-phone</name>
   <groupId>iax24j</groupId>
   <artifactId>iax24j-phone</artifactId>
   <version>0.1.0-SNAPSHOT</version>
@@ -43,12 +44,12 @@
     <dependency>
       <groupId>iax24j</groupId>
       <artifactId>iax24j-codec-ulaw</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>iax24j</groupId>
-      <artifactId>iax24j-codec-gsm</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <artifactId>iax24j-connection-j2se</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
