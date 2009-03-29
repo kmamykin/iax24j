@@ -245,6 +245,8 @@ public class Peer {
         try {
            Thread.sleep(2000);
         } catch (Exception e) {}
+        // Close the connection
+        connection.stop();
         //Notifies the peer listener
         peerListener.exited();
     }
