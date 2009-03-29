@@ -116,21 +116,7 @@ public class Peer {
         }
         this.newLocalSrcCallNo = 2;
         this.peerListener = peerListener;
-    	Properties prop = new Properties();
-		InputStream is = ClassLoader.getSystemResourceAsStream("iax/protocol/connection/connection.properties");
-		try {
-			prop.load(is);
-			String connectionClassName = prop.getProperty("connection.class.name");
-			this.connection = (Connection) Class.forName(connectionClassName).newInstance();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+        this.connection = new Connection();
         this.calls = new Hashtable();
         this.srcCallNoFromDestCallNo = new Hashtable();
         this.srcCallNoFromCalledNumber = new Hashtable();
