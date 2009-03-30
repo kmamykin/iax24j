@@ -16,12 +16,9 @@ import iax.protocol.peer.state.Unregistered;
 import iax.protocol.peer.state.Waiting;
 import iax.protocol.util.FrameUtil;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -477,7 +474,7 @@ public class Peer {
                 retryFullFrame.incRetryCount();
                 if (retryFullFrame.getRetryCount() < RETRY_MAXCOUNT) {
                     sendFrame(retryFullFrame);
-                } else throw new PeerException("Reached retries maximun in the peer for full frame of type " + 
+                } else throw new PeerException("Reached retries maximum in the peer for full frame of type " +
                         retryFullFrame.getFrameType() + ", subclass " + retryFullFrame.getSubclass());
             }
             iterator = framesWaitingReply.elements();
@@ -486,7 +483,7 @@ public class Peer {
                 retryFullFrame.incRetryCount();
                 if (retryFullFrame.getRetryCount() < RETRY_MAXCOUNT) {
                     sendFrame(retryFullFrame);
-                } else throw new PeerException("Reached retries maximun in the peer for full frame of type " + 
+                } else throw new PeerException("Reached retries maximum in the peer for full frame of type " +
                         retryFullFrame.getFrameType() + ", subclass " + retryFullFrame.getSubclass());
             }
         } catch (PeerException e) {

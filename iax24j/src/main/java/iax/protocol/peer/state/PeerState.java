@@ -19,6 +19,9 @@ public class PeerState {
             if (frame.getType() == Frame.PROTOCOLCONTROLFRAME_T) {
                 // Received a protocol control frame
                 ProtocolControlFrame protocolControlFrame = (ProtocolControlFrame) frame;
+
+                //System.out.println("Received in PeerState: " + protocolControlFrame.getSubclass());
+
                 switch (protocolControlFrame.getSubclass()) {      
                 case ProtocolControlFrame.ACK_SC:
                     PeerCommandRecvFacade.ack(peer, protocolControlFrame);

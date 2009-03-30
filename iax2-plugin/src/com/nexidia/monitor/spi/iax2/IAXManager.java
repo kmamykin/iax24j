@@ -5,9 +5,14 @@
 package com.nexidia.monitor.spi.iax2;
 
 import iax.audio.AudioFactory;
+import iax.protocol.call.Call;
 import iax.protocol.peer.Peer;
+import iax.protocol.peer.PeerException;
 import iax.protocol.peer.PeerListener;
 import iax.protocol.user.command.UserCommandFacade;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,19 +21,37 @@ import iax.protocol.user.command.UserCommandFacade;
 public class IAXManager implements PeerListener {
 
     private Peer peer;
-    private String callParticipant;
 
-    public static void main(String[] args) throws InterruptedException {
-        IAXManager iaxManager = new IAXManager("123", "123", "192.168.1.111", 10);
+    public static void main(String[] args) throws InterruptedException, IOException {
+        IAXManager iaxManager = new IAXManager("125", "125", "192.168.1.111", 10);
+        IAXManager iaxManager2 = new IAXManager("123", "123", "192.168.1.111", 10);
+        IAXManager iaxManager3 = new IAXManager("124", "124", "192.168.1.111", 10);
         iaxManager.start();
-        Thread.sleep(10000);
+        iaxManager2.start();
+        iaxManager3.start();
+        Thread.sleep(1000);
+
+        iaxManager2.makeCall("125");
+        Thread.sleep(1000);
+        //iaxManager.answerCall();
+        Thread.sleep(1000);
+        iaxManager3.makeCall("125");
+        Thread.sleep(1000);
+        //iaxManager.answerCall();
+        Thread.sleep(1000);
+        iaxManager2.hangup("125");
+        Thread.sleep(100000);
+        iaxManager3.hangup("125");
+
+        System.in.read();
         iaxManager.stop();
+        iaxManager2.stop();
+        iaxManager3.stop();
     }
 
     public IAXManager(String userName, String userPassword, String host, int maxCalls) {
         AudioFactory audioFactory = new IAXAudioFactory();
         this.peer = new Peer(this, userName, userPassword, host, false, maxCalls, audioFactory);
-        this.callParticipant = null;
     }
 
     public void start() {
@@ -37,6 +60,29 @@ public class IAXManager implements PeerListener {
 
     public void stop() {
         shutdown();
+    }
+
+    @Override
+    public void recvCall(String callingName, String callingNumber) {
+        System.out.println("IAXphone, recvCall: " + callingNumber);
+        // This method is called when we receive a call from remote peer
+        // We need to handle this event and initiate a recording/scanning session
+        answerCall(callingNumber);
+    }
+
+    @Override
+    public void hungup(String calledNumber) {
+        // This method is called when the remote peer hungup.
+        // we need to handle this event and close the recording/scanning session
+        System.out.println("IAXphone, hungup: " + calledNumber);
+//        try {
+//            //hungup(calledNumber);
+//            Call hangedCall = peer.getCall(calledNumber);
+//            hangedCall.endCall();
+//        } catch (PeerException ex) {
+//            Logger.getLogger(IAXManager.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
     }
 
     @Override
@@ -51,22 +97,8 @@ public class IAXManager implements PeerListener {
     }
 
     @Override
-    public void hungup(String calledNumber) {
-        // This method is called when the remote peer hungup.
-        // we need to handle this event and close the recording/scanning session
-        System.out.println("IAXphone, hungup: " + calledNumber);
-    }
-
-    @Override
     public void playWaitTones(String calledNumber) {
         System.out.println("IAXphone, playWaitTones" + calledNumber);
-    }
-
-    @Override
-    public void recvCall(String callingName, String callingNumber) {
-        // This method is called when we receive a call from remote peer
-        // We need to handle this event and initiate a recording/scanning session
-        callParticipant = callingNumber;
     }
 
     @Override
@@ -89,30 +121,28 @@ public class IAXManager implements PeerListener {
         UserCommandFacade.newCall(peer, calledNumber);
     }
 
-    public void transferCall(String calledNumber) {
-        System.out.println("IAXphone, Transfering call from " + callParticipant + " to " + calledNumber);
-        UserCommandFacade.transferCall(peer, callParticipant, calledNumber);
+//    public void transferCall(String calledNumber) {
+//        System.out.println("IAXphone, Transfering call from " + callParticipant + " to " + calledNumber);
+//        UserCommandFacade.transferCall(peer, callParticipant, calledNumber);
+//    }
+
+//    public void sendDTMF(char tone) {
+//        UserCommandFacade.sendDTMF(peer, callParticipant, tone);
+//    }
+
+    public void answerCall(String currentCallNo) {
+        System.out.println("IAXphone, Answered call from " + currentCallNo);
+
+        UserCommandFacade.answerCall(peer, currentCallNo);
     }
 
-    public void sendDTMF(char tone) {
-        UserCommandFacade.sendDTMF(peer, callParticipant, tone);
-    }
-
-    public void answerCall() {
-        System.out.println("IAXphone, Answered call from " + callParticipant);
-        System.out.println("Type \"hangup\" to hangup call");
-        System.out.println("Type \"transfer <address>\" to transfer call to address");
-
-        UserCommandFacade.answerCall(peer, callParticipant);
-    }
-
-    private void hangup() {
+    public void hangup(String callParticipant) {
         System.out.println("IAXphone, Hungup call from " + callParticipant);
 
         UserCommandFacade.hangupCall(peer, callParticipant);
     }
 
-    private void shutdown() {
+    public void shutdown() {
         System.out.println("IAXphone, Shutting down...");
 
         UserCommandFacade.exit(peer);

@@ -22,7 +22,10 @@ public abstract class CallState {
             if (frame.getType() == Frame.PROTOCOLCONTROLFRAME_T) {
                 // Received a protocol control frame
                 ProtocolControlFrame protocolControlFrame = (ProtocolControlFrame) frame;
-                switch (protocolControlFrame.getSubclass()) {  
+
+                //System.out.println("Received in CallState: " + protocolControlFrame.getSubclass());
+
+                switch (protocolControlFrame.getSubclass()) {
                 case ProtocolControlFrame.ACK_SC:
                     CallCommandRecvFacade.ack(call, protocolControlFrame);
                     break;
